@@ -7,6 +7,7 @@ const cors = require('cors');
 //routes
 
 const userRoute = require('./routes/userRoutes');
+const teacherRoute = require('./routes/teacherRoutes');
 
 //database config
 mongoose.connect(config.database, {
@@ -24,6 +25,7 @@ app.use(express.json());
 //routes
 
 app.use('/api/users/', userRoute);
+app.use('/api/teacher', teacherRoute)
 
 
 //error handling
