@@ -1,0 +1,8 @@
+<p> Course Works!</p>
+
+<div *ngFor="let list of courseLists">
+    <p>{{list.name}}</p>
+    <p>{{list.courseName}}</p>
+    <p>{{list.courseId}}</p>
+    <button id="remove" (click)="removeCourse(list.courseId)">Remove</button>
+</div>
