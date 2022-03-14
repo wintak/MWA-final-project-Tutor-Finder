@@ -3,14 +3,15 @@ const teacher = require('../models/Teacher');
 const tokengen = require('../tokenGenerator/tokengen');
 
 module.exports.fetch= async (req, res) => {
-    let  courses= teacher.find({userId:req.params}).course;
+    let  teacher = teacher.find({tokengen}).exec()
     if(courses){
         return    res.json({ success: 1, data: courses , msg:"courses found!",  status: res.statusCode
     });
     }else{
-   return     res.json({ success: 1, data: {},msg:"courses not found" ,  status: res.statusCode});
-
+   return    res.json({ success: 1, data: {},msg:"courses not found" ,  status: res.statusCode});
     }
+}
+
 module.exports.remove = async (req, res) => {
     console.log(req.params);
     await teacher.deleteOne({tokengen },{$pull:{course:{courseId:req.params.id}}});
@@ -18,8 +19,10 @@ module.exports.remove = async (req, res) => {
 }
 
 module.exports.add = async (req, res) => {
-    console.log(req.body);
-    await teacher.updateOne({userId:req.body.userId},{$push:{course:req.body}});
+    console.log("teacher"+req.body);
+      
+    await new teacher(req.body).save()
+    // await teacher.updateOne({tokengen},{$push:{course:req.body}});
     res.send({ success: 1, data: teacher});
 
 }
@@ -31,4 +34,4 @@ module.exports.edit = async (req, res) => {
     res.send({ success: 1, data: teacher});
 
 }
-}
+

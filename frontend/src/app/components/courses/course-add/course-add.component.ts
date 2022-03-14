@@ -6,17 +6,9 @@ import{FormBuilder, FormGroup} from '@angular/forms'
   styleUrls: ['./course-add.component.css']
 })
 export class CourseAddComponent implements OnInit {
-  formValue !: FormGroup;
   constructor(private formbuilder: FormBuilder) { }
-
   ngOnInit(): void {
-    this.formValue= this.formbuilder.group({
-     course_id: [''],
-     Title:[''],
-     Descripttion:['']
-
-    })
-
+  
   }
 
 }

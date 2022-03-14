@@ -3,7 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {environment as env} from "../../../environments/environment";
 
-const API_URL = `${env.apiBaseUrl}/api/teacher/course`;
+const API_URL = `${env.apiBaseUrl}/api/teacher`;
 
 @Injectable({
   providedIn: 'root'
@@ -11,19 +11,20 @@ const API_URL = `${env.apiBaseUrl}/api/teacher/course`;
 export class CourseService {
   constructor(private http: HttpClient) {}
 
-  addCourse({ }) : Observable<Object> {
-    return this.http.post(`${API_URL}`, {});
-  }
-
   listCourse() : Observable<Object> {
     return this.http.get(`${API_URL}`);
   }
-  getCourse(course_id: string) {
-    return this.http.get(`${API_URL}/${course_id}`);
+
+  addCourse({ }) : Observable<Object> {
+    return this.http.post(`${API_URL}/add`, {});
+  }
+ 
+  editCourse(course_id: string, { }) : Observable<Object> {
+    return this.http.patch(`${API_URL}/edit`, { });
+  }
+  deleteCourse(course_id: string, { }) : Observable<Object> {
+    return this.http.delete(`${API_URL}/delete`, { });
   }
 
-  updateJob(course_id: string, { }) : Observable<Object> {
-    return this.http.patch(`${API_URL}/${course_id}`, { });
-  }
 
 }

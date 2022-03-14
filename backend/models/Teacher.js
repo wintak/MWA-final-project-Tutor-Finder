@@ -7,7 +7,8 @@ userId:{
 courses:[{courseId:Number},
          {courseTitle:String},
          {couseDescription:String}
-        ]     
+        ] ,
+enrolled:[]    
 })
-
+ 
 module.exports = mongoose.model("Teacher", TeacherSchema)

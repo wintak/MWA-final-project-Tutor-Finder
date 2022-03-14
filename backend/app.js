@@ -14,6 +14,7 @@ mongoose.connect(config.database, {
     useNewUrlParser: true
 });
 
+//mongoose.connect('mongodb://localhost:27017/teach');
 mongoose.connection.on('connected', () => {
     console.log('connected to database' + config.database);
 });
@@ -25,7 +26,7 @@ app.use(express.json());
 //routes
 
 app.use('/api/users/', userRoute);
-app.use('/api/teacher', teacherRoute)
+app.use('/api/teacher/', teacherRoute)
 
 
 //error handling
