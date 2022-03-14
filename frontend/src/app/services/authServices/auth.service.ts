@@ -20,8 +20,6 @@ export class AuthService {
   }
   loginUser(email: string, passWord: string) {
     return this.httpClient.post(`${environment.apiBaseUrl}/api/users/signin`, { email, passWord });
-
-
   }
   storeInSession(token: any, user: any) {
 

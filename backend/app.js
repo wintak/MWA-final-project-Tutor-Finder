@@ -10,6 +10,8 @@ const userRoute = require('./routes/userRoutes');
 const teacherRoute = require('./routes/teacherRoutes');
 
 //database config
+const courseRoute = require('./routes/courseRoutes')
+    //database config
 mongoose.connect(config.database, {
     useNewUrlParser: true
 });
@@ -27,6 +29,8 @@ app.use(express.json());
 
 app.use('/api/users/', userRoute);
 app.use('/api/teacher/', teacherRoute)
+app.use('/api/courses/', courseRoute);
+
 
 
 //error handling

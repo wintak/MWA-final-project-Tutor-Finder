@@ -22,6 +22,8 @@ import  {AuthGuard} from './services/authServices/auth.guard'
 import {RoleTeacherGuard} from './services/authServices/roleTeacher.guard'
 import {RoleStudentGuard} from './services/authServices/roleStudent.guard'
 import { AuthInterceptor } from './services/authServices/AuthInterceptor';
+import { CourseListsComponent } from './components/dashboard/course-lists/course-lists.component';
+import { FooterComponent } from './components/footer/footer.component';
 //  paths
 const MyRoutes:Routes =[
   {path:'',redirectTo:'home',pathMatch:'full'},
@@ -29,9 +31,11 @@ const MyRoutes:Routes =[
   {path:'teacher',component:CourseComponent},
   {path:'signupStudent',component:SignupStudentComponent},
   {path:'SignupTeacher',component:SignupTeacherComponent},
-
   // {path:'SignupTeacher',component:SignupTeacherComponent,canActivate:[AuthGuard]},
-  {path:'signin',component:SigninComponent}
+  {path:'signin',component:SigninComponent},
+  {path:'courselists',component:CourseListsComponent},
+  {path:'**',component:HomeComponent}
+
 
 
 ]
@@ -46,14 +50,15 @@ const MyRoutes:Routes =[
     CourseEditComponent,
     SignupStudentComponent,
     SignupTeacherComponent,
-    SigninComponent
+    SigninComponent,
+    CourseListsComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(MyRoutes),
     HttpClientModule,
-    ReactiveFormsModule,
-  ] ,
+    ReactiveFormsModule  ] ,
    providers: [  { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }  ],
     
   bootstrap: [AppComponent]

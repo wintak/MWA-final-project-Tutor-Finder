@@ -1,0 +1,22 @@
+GET  http://localhost:3000/api/courses/allcourses HTTP/1.1
+
+
+###
+POST http://localhost:3000/api/courses/searchByTitle HTTP/1.1
+content-type: application/json
+
+{ 
+    "courseTitle":"Foundations of Biology" 
+
+ }
+###
+POST http://localhost:3000/api/courses/searchById HTTP/1.1
+content-type: application/json
+
+{ 
+     "id":"622f605fa1c553e3a943945a"
+
+
+ }
+
+
