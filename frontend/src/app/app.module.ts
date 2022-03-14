@@ -17,7 +17,8 @@ import { CoursesComponent } from './components/courses/courses.component';
 //  paths
 const MyRoutes:Routes =[
   {path:'',redirectTo:'home',pathMatch:'full'},
-  {path:'home',component:HomeComponent},
+  {path:'home',component: HomeComponent},
+  {path: 'search', component: SearchComponent}
 
 ]
 @NgModule({

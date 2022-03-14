@@ -11,7 +11,7 @@ import { StudentService } from 'src/app/services/student/student.service';
 export class SearchComponent {
 
   searchInput: FormGroup;
-  listOfTeachers: any = []
+  listOfTeachers: any;
 
   constructor(private fb: FormBuilder, private studentService: StudentService) { 
     this.searchInput = fb.group({

@@ -12,5 +12,5 @@
     </div>
     
 </form>
-
-<app-teachers [teachers] = "listOfTeachers"></app-teachers>
+{{listOfTeachers}}
+<app-teachers *ngIf="listOfTeachers"    [teachers] = "listOfTeachers"></app-teachers>
