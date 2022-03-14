@@ -2,17 +2,18 @@ const User = require('../models/User');
 const tokengen = require('../tokenGenerator/tokengen');
 
 module.exports.adduser = (req, res, next) => {
-    const { firstName, email, lastName, phoneNumber, password, role, } = req.body;
-
+    const { firstName, email, lastName, phoneNumber, passWord, role } = req.body;
     const result = User.adduser(
         new User({
             firstName: firstName,
             lastName: lastName,
             phoneNumber: phoneNumber,
             email: email,
-            password: password,
+            passWord: passWord,
             role: role
         }));
+
+
     result.then((docs) => {
             if (docs) {
                 res.json({ success: true, data: docs, msg: 'new  user Added !', status: res.statusCode })
@@ -35,13 +36,13 @@ module.exports.adduser = (req, res, next) => {
 };
 
 module.exports.signin = async(req, res, next) => {
-    const { email, password } = req.body;
+    const { email, passWord } = req.body;
     const getUserByEmail = User.getUserByEmail(email);
 
     const user = getUserByEmail.then((user) => {
 
-        if (!user) {
-            res.json({
+        if (!user || user == null) {
+            return res.json({
                 success: false,
                 data: {},
                 msg: 'user not found!',
@@ -52,12 +53,16 @@ module.exports.signin = async(req, res, next) => {
 
     });
     user.then((user) => {
-        User.comparePassword(password, user.password, (err, isMatch) => {
+
+        User.comparePassword(passWord, user.passWord, (err, isMatch) => {
+
             const payload = {
                 firstName: user.firstName,
-                email: user.email
+                email: user.email,
+                role: user.role
             }
             if (err) throw err;
+
             if (isMatch) {
                 const token = tokengen.tokengen(user);
 

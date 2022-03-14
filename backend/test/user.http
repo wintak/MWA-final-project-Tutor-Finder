@@ -4,13 +4,10 @@ content-type: application/json
 { 
      "firstName":"momona", 
     "lastName":"momona", 
-     "email":"heru@gmail.com" ,
-    "password":"123",
     "phoneNumber": "091648994",
-  "email": "momonaebuy@gmail.com",
-    "password": "123",
+     "email": "momonaebuy@gmail.com",
+    "passWord": "123",
     "role": "STUDENT"
-
  }
 
 
@@ -19,8 +16,8 @@ POST http://localhost:3000/api/users/signin HTTP/1.1
 content-type: application/json
 
 { 
-    "email":"momonaebuy@gmail.com" ,
-    "password":"123"
+    "email":"momona1@gmail.com" ,
+    "passWord":"123"
 
  }
 

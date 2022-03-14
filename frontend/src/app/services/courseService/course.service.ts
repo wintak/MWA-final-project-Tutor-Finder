@@ -1,9 +1,9 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {environment as env} from "../../environments/environment";
+import {environment as env} from "../../../environments/environment";
 
-const API_URL = `${env.api.basepath}/api/teacher/course`;
+const API_URL = `${env.apiBaseUrl}/api/teacher/course`;
 
 @Injectable({
   providedIn: 'root'
