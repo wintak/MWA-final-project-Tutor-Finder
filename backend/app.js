@@ -7,8 +7,8 @@ const cors = require('cors');
 //routes
 
 const userRoute = require('./routes/userRoutes');
-
-//database config
+const courseRoute = require('./routes/courseRoutes')
+    //database config
 mongoose.connect(config.database, {
     useNewUrlParser: true
 });
@@ -24,6 +24,8 @@ app.use(express.json());
 //routes
 
 app.use('/api/users/', userRoute);
+app.use('/api/courses/', courseRoute);
+
 
 
 //error handling
