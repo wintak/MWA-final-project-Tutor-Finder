@@ -1,0 +1,41 @@
+.landing {
+    background-color: rgba(248, 249, 250)!important;
+    margin-left: 28rem;
+    margin-top: 3rem;
+    width: 40rem;
+    margin-bottom: 10rem;
+}
+
+
+/* @media (min-width: 600px) {
+    .landing {
+        background-color: rgba(248, 249, 250)!important;
+        margin-top: 3rem;
+        margin-bottom: 10rem;
+        width: 0;
+    }
+} */
+
+h3,
+.signupheader {
+    text-align: center;
+    font-size: 1.25rem;
+    line-height: 1.4;
+    font-family: sans-serif;
+    font-weight: 400;
+}
+
+.signinbutton {
+    background-color: black !important;
+    border-radius: 0.375rem;
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    border-color: #fff;
+    color: #fff;
+}
+
+.message {
+    color: red;
+    text-align: center;
+}

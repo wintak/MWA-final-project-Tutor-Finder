@@ -1,33 +1,38 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg  .navbar-collapse navbar-light bg-light  sticky-top">
     <div class="container-fluid">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" (click)="toggleNavbarCollapsing()" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
+        <span class="icon-bar "> Tutor Finder</span>
+
+   
       </button>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <a class="navbar-brand" href="#">Tutor Finder</a>
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+        <div class="collapse navbar-collapse " [class.collapse]="navbarCollapsed" id="navbarTogglerDemo03">
+            <img src='../../../assets/log.svg' *ngIf="togglNavbarCollapsing()" width=" 50 " class=" img-fluid brandlogo " alt="logo ">
+            <a class="navbar-brand " href="# " *ngIf="togglNavbarCollapsing() ">
+                Tutor Finder</a>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 " [class.navspace]="navbarCollapsed ">
+                <li class="nav-item " [class.links]="navbarCollapsed ">
+                    <a class="nav-link active " aria-current="page " href="# ">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['/register']">Enroll A student </a>
+                <li class="nav-item " [class.links]="navbarCollapsed ">
+                    <a class="nav-link " [routerLinkActive]="[ 'active'] " [routerLink]="[ '/signupStudent'] ">Enroll A student </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['/register']">Become Tutor</a>
+                <li class="nav-item " [class.links]="navbarCollapsed ">
+                    <a class="nav-link " [routerLinkActive]="[ 'active'] " [routerLink]="[ '/SignupTeacher'] ">Become Tutor</a>
                 </li>
-                <!-- <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                <!-- <li class="nav-item ">
+                    <a class="nav-link disabled " href="# " tabindex="-1 " aria-disabled="true ">Disabled</a>
                 </li> -->
             </ul>
             <ul class="navbar-nav ">
-                <li class="nav-item ">
-                    <a class="nav-link ">Profile</a>
+                <li class="nav-item " [class.leftNav]="navbarCollapsed ">
+                    <a class="nav-link " *ngIf="isLoggedIn() ">Profile</a>
                 </li>
-                <li class="nav-item ">
-                    <a class="nav-link" [routerLink]="['/login']">Sign In</a>
+                <li class="nav-item " [class.leftNav]="navbarCollapsed ">
+                    <a class="nav-link " [class.signinbutton]="navbarCollapsed " [routerLink]="[ '/signin'] " *ngIf="!isLoggedIn() ">Sign In</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link">Logout</a>
+                <li class="nav-item " [class.leftNav]="navbarCollapsed ">
+                    <a class="nav-link " [class.signinbutton]="navbarCollapsed " (click)="logout() " *ngIf="isLoggedIn() ">Logout</a>
                 </li>
             </ul>
 

@@ -1,0 +1,58 @@
+.cardbox {
+    margin-left: 20rem;
+    margin-top: 12rem;
+    font-size: 1.25rem;
+    color: #fff;
+    line-height: 1.4;
+    font-family: sans-serif;
+    font-style: italic;
+    font-weight: 400;
+}
+
+@media only screen and (max-width: 600px) {
+    .cardbox {
+        margin: 0 !important;
+    }
+}
+
+.landingButton1 {
+    background-color: #fff;
+    border-radius: 0.375rem;
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    border-color: #fff;
+    color: black;
+    margin: 3rem;
+}
+
+.landingButton1:hover {
+    background-color: black;
+    border-radius: 0.375rem;
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    border-color: #fff;
+    color: #fff;
+    margin-right: 3rem;
+}
+
+.landingButton2:hover {
+    background-color: #fff;
+    border-radius: 0.375rem;
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    border-color: #fff;
+    color: black;
+}
+
+.landingButton2 {
+    background-color: black;
+    border-radius: 0.375rem;
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    border-color: #fff;
+    color: #fff;
+}

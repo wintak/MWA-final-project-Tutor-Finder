@@ -10,4 +10,4 @@ router.post('/signin', userController.signin);
 router.get('/verify/:email', userController.verifyemail);
 router.get('/protected', authenticate, userController.authenticate);
 
-module.exports = router
+module.exports = router;
