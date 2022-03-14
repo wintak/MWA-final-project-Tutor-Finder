@@ -4,13 +4,17 @@ import { BrowserModule } from '@angular/platform-browser';
 import {Routes, RouterModule} from '@angular/router';
 import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 ///components
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
+import { CourseComponent } from './components/courses/course/course.component';
+import { CourseListComponent } from './components/courses/course-list/course-list.component';
+import { CourseAddComponent } from './components/courses/course-add/course-add.component';
+import { CourseEditComponent } from './components/courses/course-edit/course-edit.component';
+
 import { SignupStudentComponent } from './components/auth/signup-student/signup-student.component';
 import { SignupTeacherComponent } from './components/auth/signup-teacher/signup-teacher.component';
 import { SigninComponent } from './components/auth/signin/signin.component';
@@ -24,6 +28,7 @@ import { FooterComponent } from './components/footer/footer.component';
 const MyRoutes:Routes =[
   {path:'',redirectTo:'home',pathMatch:'full'},
   {path:'home',component:HomeComponent},
+  {path:'teacher',component:CourseComponent},
   {path:'signupStudent',component:SignupStudentComponent},
   {path:'SignupTeacher',component:SignupTeacherComponent},
   // {path:'SignupTeacher',component:SignupTeacherComponent,canActivate:[AuthGuard]},
@@ -39,6 +44,10 @@ const MyRoutes:Routes =[
     AppComponent,
     NavbarComponent,
     HomeComponent,
+    CourseComponent,
+    CourseListComponent,
+    CourseAddComponent,
+    CourseEditComponent,
     SignupStudentComponent,
     SignupTeacherComponent,
     SigninComponent,
@@ -49,9 +58,7 @@ const MyRoutes:Routes =[
     BrowserModule,
     RouterModule.forRoot(MyRoutes),
     HttpClientModule,
-    ReactiveFormsModule,
-    Ng2SearchPipeModule
-  ] ,
+    ReactiveFormsModule  ] ,
    providers: [  { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }  ],
     
   bootstrap: [AppComponent]
