@@ -1,0 +1,11 @@
+<p>teachers works!</p>
+
+<div *ngFor="let list of lists">
+    <p >{{list.name}}</p>
+    <p >{{list.rating}}</p>
+    <p >{{list.courseId}}</p>
+    <div>
+        <button id="enroll" (click) = "enroll(list.courseId)">Enroll</button>
+    </div>
+    
+</div>

@@ -70,12 +70,14 @@ module.exports.signin = async(req, res, next) => {
 
                 });
             } else {
+
                 res.json({
                     success: false,
                     token: null,
                     data: payload,
                     msg: "Wrong password",
                     status: res.statusCode
+                    
                 });
             }
 
