@@ -12,7 +12,6 @@ module.exports = (req, res, next) => {
         token = req.query.token;
     }
 
-
     if (!token) {
         return res.json({
             success: false,

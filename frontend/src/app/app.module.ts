@@ -5,6 +5,7 @@ import {Routes, RouterModule} from '@angular/router';
 import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
+
 ///components
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -13,12 +14,35 @@ import { SearchComponent } from './components/search/search.component';
 import { TeachersComponent } from './components/teachers/teachers.component';
 import { CoursesComponent } from './components/courses/courses.component';
 
+import { CourseComponent } from './components/courses/course/course.component';
+import { CourseListComponent } from './components/courses/course-list/course-list.component';
+import { CourseAddComponent } from './components/courses/course-add/course-add.component';
+import { CourseEditComponent } from './components/courses/course-edit/course-edit.component';
 
+import { SignupStudentComponent } from './components/auth/signup-student/signup-student.component';
+import { SignupTeacherComponent } from './components/auth/signup-teacher/signup-teacher.component';
+import { SigninComponent } from './components/auth/signin/signin.component';
+import  {AuthGuard} from './services/authServices/auth.guard'
+import {RoleTeacherGuard} from './services/authServices/roleTeacher.guard'
+import {RoleStudentGuard} from './services/authServices/roleStudent.guard'
+import { AuthInterceptor } from './services/authServices/AuthInterceptor';
+import { CourseListsComponent } from './components/dashboard/course-lists/course-lists.component';
+import { FooterComponent } from './components/footer/footer.component';
 //  paths
 const MyRoutes:Routes =[
   {path:'',redirectTo:'home',pathMatch:'full'},
   {path:'home',component: HomeComponent},
-  {path: 'search', component: SearchComponent}
+  {path: 'search', component: SearchComponent},
+  {path:'home',component:HomeComponent},
+  {path:'teacher',component:CourseComponent},
+  {path:'signupStudent',component:SignupStudentComponent},
+  {path:'SignupTeacher',component:SignupTeacherComponent},
+  // {path:'SignupTeacher',component:SignupTeacherComponent,canActivate:[AuthGuard]},
+  {path:'signin',component:SigninComponent},
+  {path:'courselists',component:CourseListsComponent},
+  {path:'**',component:HomeComponent}
+
+
 
 ]
 @NgModule({
@@ -26,17 +50,38 @@ const MyRoutes:Routes =[
     AppComponent,
     NavbarComponent,
     HomeComponent,
+<<<<<<< HEAD
     SearchComponent,
     TeachersComponent,
     CoursesComponent
+=======
+    CourseComponent,
+    CourseListComponent,
+    CourseAddComponent,
+    CourseEditComponent,
+    SignupStudentComponent,
+    SignupTeacherComponent,
+    SigninComponent,
+    CourseListsComponent,
+    FooterComponent
+>>>>>>> 264a4c559fee771895a17955c0f2ab3ee66fa84c
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(MyRoutes),
     HttpClientModule,
+<<<<<<< HEAD
     ReactiveFormsModule    
   ],
   providers: [],
+=======
+    ReactiveFormsModule  ] ,
+   providers: [  { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }  ],
+    
+>>>>>>> 264a4c559fee771895a17955c0f2ab3ee66fa84c
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  
+
+ }

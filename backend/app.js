@@ -8,12 +8,16 @@ const cors = require('cors');
 
 const userRoute = require('./routes/userRoutes');
 const studentRoute = require('./routes/studentRouter')
+const teacherRoute = require('./routes/teacherRoutes');
 
 //database config
+const courseRoute = require('./routes/courseRoutes')
+    //database config
 mongoose.connect(config.database, {
     useNewUrlParser: true
 });
 
+//mongoose.connect('mongodb://localhost:27017/teach');
 mongoose.connection.on('connected', () => {
     console.log('connected to database' + config.database);
 });
@@ -25,7 +29,12 @@ app.use(express.json());
 //routes
 
 app.use('/api/users/', userRoute);
+<<<<<<< HEAD
 app.use('/api/students', studentRoute);
+=======
+app.use('/api/teacher/', teacherRoute)
+app.use('/api/courses/', courseRoute);
+>>>>>>> 264a4c559fee771895a17955c0f2ab3ee66fa84c
 
 
 
