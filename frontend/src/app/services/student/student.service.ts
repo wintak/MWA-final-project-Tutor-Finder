@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class StudentService {
 
-  API_URL = 'http://localhost/3000';
+  API_URL = 'http://localhost:3000';
 
   constructor(public http: HttpClient){}
 
@@ -27,7 +27,7 @@ export class StudentService {
   }
 
   getTeachers(input: any): Observable<any> {
-    return this.http.get(this.API_URL + '/teachers/' + input);
+    return this.http.get(this.API_URL + '/api/teacher/search/' + input);
   }
 
   sendEnrollment(courseId:any): Observable<any> {

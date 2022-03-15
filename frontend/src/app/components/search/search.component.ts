@@ -21,7 +21,10 @@ export class SearchComponent {
 
   search(){
   const input = this.searchInput.controls['search'].value;
-  this.studentService.getTeachers(input).subscribe(res => this.listOfTeachers = res )
+  console.log("inside search")
+  this.studentService.getTeachers(input).subscribe(res => {
+  this.listOfTeachers = res
+  console.log(res) });
 }
 
 }

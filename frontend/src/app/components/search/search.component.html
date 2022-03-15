@@ -1,16 +1,15 @@
-<p>search works!</p>
 
 <form [formGroup]="searchInput"  (ngSubmit)="search()">
     <div>
         <input id="search" value="search" formControlName = "search">
     </div>
     <div>
-        <button [disabled]="!searchInput.valid">-></button>
+        <button [disabled]="!searchInput.valid">Search</button>
     </div>
     <div>
         <button id="mylist">My List</button>
     </div>
     
 </form>
-{{listOfTeachers}}
-<app-teachers *ngIf="listOfTeachers"    [teachers] = "listOfTeachers"></app-teachers>
+
+<app-teachers *ngIf="listOfTeachers" [teachers] = "listOfTeachers"></app-teachers>

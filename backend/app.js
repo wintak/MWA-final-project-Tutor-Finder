@@ -29,12 +29,10 @@ app.use(express.json());
 //routes
 
 app.use('/api/users/', userRoute);
-<<<<<<< HEAD
-app.use('/api/students', studentRoute);
-=======
 app.use('/api/teacher/', teacherRoute)
 app.use('/api/courses/', courseRoute);
->>>>>>> 264a4c559fee771895a17955c0f2ab3ee66fa84c
+app.use('/api/student/', studentRoute);
+
 
 
 

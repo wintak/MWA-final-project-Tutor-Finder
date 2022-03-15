@@ -1,9 +1,9 @@
 <div *ngFor="let list of lists">
-    <p >{{list.name}}</p>
-    <p >{{list.rating}}</p>
-    <p >{{list.courseId}}</p>
+    <p >{{list.courses.courseTitle}}</p>
+    <p >{{list.courses.courseDescription}}</p>
+    <p >{{list.courses.rating}}</p>
     <div>
-        <button id="enroll" (click) = "enroll(list.courseId)">Enroll</button>
+        <button id="enroll" (click) = "enroll(list.courses._id)">Enroll</button>
     </div>
     
 </div>

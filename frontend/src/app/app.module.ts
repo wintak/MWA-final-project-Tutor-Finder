@@ -33,7 +33,6 @@ const MyRoutes:Routes =[
   {path:'',redirectTo:'home',pathMatch:'full'},
   {path:'home',component: HomeComponent},
   {path: 'search', component: SearchComponent},
-  {path:'home',component:HomeComponent},
   {path:'teacher',component:CourseComponent},
   {path:'signupStudent',component:SignupStudentComponent},
   {path:'SignupTeacher',component:SignupTeacherComponent},
@@ -50,11 +49,9 @@ const MyRoutes:Routes =[
     AppComponent,
     NavbarComponent,
     HomeComponent,
-<<<<<<< HEAD
     SearchComponent,
     TeachersComponent,
-    CoursesComponent
-=======
+    CoursesComponent,
     CourseComponent,
     CourseListComponent,
     CourseAddComponent,
@@ -64,21 +61,15 @@ const MyRoutes:Routes =[
     SigninComponent,
     CourseListsComponent,
     FooterComponent
->>>>>>> 264a4c559fee771895a17955c0f2ab3ee66fa84c
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(MyRoutes),
     HttpClientModule,
-<<<<<<< HEAD
     ReactiveFormsModule    
   ],
-  providers: [],
-=======
-    ReactiveFormsModule  ] ,
    providers: [  { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }  ],
     
->>>>>>> 264a4c559fee771895a17955c0f2ab3ee66fa84c
   bootstrap: [AppComponent]
 })
 export class AppModule {
