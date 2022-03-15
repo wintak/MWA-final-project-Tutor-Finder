@@ -16,15 +16,7 @@ const CourseSchema = mongoose.Schema({
     catagory: {
         type: String,
         required: true
-    },
-    rating: {
-        type: String,
-        required: true
     }
-
-
-
-
 });
 
 const Course = module.exports = mongoose.model('Course', CourseSchema);
@@ -34,10 +26,9 @@ module.exports.getCourses = async() => {
 
     }).exec();
 };
-module.exports.searchCourseTitle = async(courseTitle) => {
+module.exports.searchCourseTitle = async (courseTitle) => {
     console.log(courseTitle);
     return await Course.find({
-
         courseTitle: courseTitle
     }).exec();
 }
