@@ -11,7 +11,7 @@ import { StudentService } from 'src/app/services/student/student.service';
 export class SearchComponent {
 
   searchInput: FormGroup;
-  listOfTeachers: any;
+  listOfTeachers: any[] = [];
 
   constructor(private fb: FormBuilder, private studentService: StudentService) { 
     this.searchInput = fb.group({
@@ -23,7 +23,7 @@ export class SearchComponent {
   const input = this.searchInput.controls['search'].value;
   console.log("inside search")
   this.studentService.getTeachers(input).subscribe(res => {
-  this.listOfTeachers = res
+  this.listOfTeachers = res.data
   console.log(res) });
 }
 
