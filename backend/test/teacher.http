@@ -1,36 +1,29 @@
-POST http://localhost:3000/api/users/signup HTTP/1.1
-content-type: application/json
 
-{ 
-     "firstName":"momona", 
-    "lastName":"momona", 
-     "email":"heru@gmail.com" ,
-    "password":"123",
-    "phoneNumber": "091648994",
-  "email": "momonaebuy@gmail.com",
-    "password": "123",
-    "role": "STUDENT"
-
- }
 
 ###
 POST http://localhost:3000/api/teacher/add HTTP/1.1
 content-type: application/json
 
 { 
-
     "userId":1,
     "courses":[ { "courseId":"1"} ,
                {"titel":"angular"},
            {"description":"good"}
+   ],
+
+   "userId":2,
+    "courses":[ { "courseId":"1"} ,
+               {"titel":"angular"},
+           {"description":"good"}
    ]
+
 
  }
 
 
 ###
 
-GET  http://localhost:3000/api/users/verify/momonaebuy@gmail.com HTTP/1.1
+GET  http://localhost:3000/api/teacher/fetch HTTP/1.1
 
 ###
 GET  http://localhost:3000/api/users/protected HTTP/1.1
