@@ -58,10 +58,19 @@ module.exports.addcourse = async(req, res) => {
 
         res.send({ success: 1, data: teacher });
 
+
+
     }
 
     module.exports.edit = async(req, res) => {
-        console.log(req.body); <<
+        console.log(req.body);
+
+
+    }
+
+    module.exports.edit = async(req, res) => {
+        console.log(req.body);
+
 
         await teacher.updateOne({ tokengen }, { $set: { "course.$[obj]": req.body } }, { arrayFilters: { "obj.courseId": req.params.id } })
         res.send({ success: 1, data: teacher });
@@ -74,70 +83,71 @@ module.exports.addcourse = async(req, res) => {
 
 module.exports.searchCourse = async(req, res) => {
 
-    const { courseTitle } = req.params;
-
-    console.log("we ARE HWEW ROUER" + courseTitle)
-
-    //  const titledata=  teacher.searchCoursesByCourseTitle(courseTitle)
-    //  console.log(titledata);
-    //  titledata.then((datae)=>{
-    //      console.log(datae)
-    //  });
-    const teachersList = teacher.searchCoursesByCourseTitle(courseTitle).then((teachers) => {
-        console.log(teachers)
-        if (!teachers || teachers == null) {
-            return res.json({
-                success: false,
-                data: {},
-                msg: 'teachers not found!',
-                status: res.statusCode
-            });
-        };
-        const payload = []
-        return res.json({
-            success: false,
-            data: teachers,
-            msg: 'teachers not found!',
-            status: res.statusCode
-        });
-
-        // teachers.map((t)=>{
-        //     const userId=t.userId
-        //     t.courses.map((c)=>{
-        //       const  courseTitle=c.courseTitle
-        //          if(courseTitle){
-        //             payload.push({userId,courseTitle})
-        //             Coursedata.searchCourseTitle(courseTitle).then((courses)=>{
-        //              payload.push(courses)
-
-        //             })
-
-        //     Coursedata.searchCourseTitle(courseTitle).then((courses)=>{
-        //          payload.push(courses)
-        //}
-
-        //  }
-
-        //     })
-        // })
+        const { courseTitle } = req.params;
 
 
-        // return payload
+        console.log("we ARE HWEW ROUER" + courseTitle)
 
-    });
+        //  const titledata=  teacher.searchCoursesByCourseTitle(courseTitle)
+        //  console.log(titledata);
+        //  titledata.then((datae)=>{
+        //      console.log(datae)
+        //  });
+        const teachersList = teacher.searchCoursesByCourseTitle(courseTitle).then((teachers) => {
 
-    // teacher.searchCoursesByCourseTitle(courseTitle)
-    //     .then(teachers => {
-    //         const cx = teachers[0].courses;
+                teacher.searchCoursesByCourseTitle(courseTitle).then((teachers) => {
 
-    //         const mapped = teachers.map(t => { return { ...t, courses: t.courses.filter(c => c.courseTitle == courseTitle) } });
-    //         console.log(mapped);
-    //         const ts = mapped.filter(t => t.courses.length > 0);
-    //         console.log(ts);
-    //         res.json({ msg: 'sucessful', ts })
+                        console.log(teachers)
+                        if (!teachers || teachers == null) {
+                            return res.json({
+                                success: false,
+                                data: {},
+                                msg: 'teachers not found!',
+                                status: res.statusCode
+                            });
+                        };
+                        const payload = []
 
-    //     }, (err) => {
-    //         res.json({ msg: 'failed' });
-    //     });
+                    }
 
-}
+
+                    return res.json({
+                        success: false,
+                        data: teachers,
+                        msg: 'teachers not found!',
+                        status: res.statusCode
+                    });
+
+
+                    //     Coursedata.searchCourseTitle(courseTitle).then((courses)=>{
+                    //          payload.push(courses)
+                    //}
+
+                    //  }
+
+                    //     })
+                    // })
+
+
+
+                    // return payload
+
+                });
+
+
+            // teacher.searchCoursesByCourseTitle(courseTitle)
+            //     .then(teachers => {
+            //         const cx = teachers[0].courses;
+
+            //         const mapped = teachers.map(t => { return { ...t, courses: t.courses.filter(c => c.courseTitle == courseTitle) } });
+            //         console.log(mapped);
+            //         const ts = mapped.filter(t => t.courses.length > 0);
+            //         console.log(ts);
+            //         res.json({ msg: 'sucessful', ts })
+
+            //     }, (err) => {
+            //         res.json({ msg: 'failed' });
+            //     });
+
+
+        }

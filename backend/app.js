@@ -7,11 +7,9 @@ const cors = require('cors');
 //routes
 
 const userRoute = require('./routes/userRoutes');
-<<<<<<< HEAD
 
-=======
-const studentRoute = require('./routes/studentRouter')
->>>>>>> 760eda81c3ecb83a26bd56381aed70dd8341e237
+const studentRoute = require('./routes/studentRouter');
+
 const teacherRoute = require('./routes/teacherRoutes');
 
 //database config
