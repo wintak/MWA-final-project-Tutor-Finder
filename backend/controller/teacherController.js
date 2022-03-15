@@ -2,7 +2,7 @@ const teacher = require('../models/Teacher');
 const tokengen = require('../tokenGenerator/tokengen');
 const Coursedata = require('../models/Course');
 module.exports.fetch = async(req, res) => {
-    let teacher = teacher.find({ tokengen }).exec()
+    let courses = await teacher.find({ tokengen }).exec()
     if (courses) {
         return res.json({
             success: 1,
@@ -83,71 +83,71 @@ module.exports.addcourse = async(req, res) => {
 
 module.exports.searchCourse = async(req, res) => {
 
-        const { courseTitle } = req.params;
+    const { courseTitle } = req.params;
 
 
-        console.log("we ARE HWEW ROUER" + courseTitle)
+    console.log("we ARE HWEW ROUER" + courseTitle)
 
-        //  const titledata=  teacher.searchCoursesByCourseTitle(courseTitle)
-        //  console.log(titledata);
-        //  titledata.then((datae)=>{
-        //      console.log(datae)
-        //  });
-        const teachersList = teacher.searchCoursesByCourseTitle(courseTitle).then((teachers) => {
+    //  const titledata=  teacher.searchCoursesByCourseTitle(courseTitle)
+    //  console.log(titledata);
+    //  titledata.then((datae)=>{
+    //      console.log(datae)
+    //  });
+    const teachersList = teacher.searchCoursesByCourseTitle(courseTitle).then((teachers) => {
 
-                teacher.searchCoursesByCourseTitle(courseTitle).then((teachers) => {
-
-                        console.log(teachers)
-                        if (!teachers || teachers == null) {
-                            return res.json({
-                                success: false,
-                                data: {},
-                                msg: 'teachers not found!',
-                                status: res.statusCode
-                            });
-                        };
-                        const payload = []
-
-                    }
-
-
-                    return res.json({
-                        success: false,
-                        data: teachers,
-                        msg: 'teachers not found!',
-                        status: res.statusCode
-                    });
-
-
-                    //     Coursedata.searchCourseTitle(courseTitle).then((courses)=>{
-                    //          payload.push(courses)
-                    //}
-
-                    //  }
-
-                    //     })
-                    // })
-
-
-
-                    // return payload
-
+        teacher.searchCoursesByCourseTitle(courseTitle).then((teachers) => {
+            console.log(teachers)
+            if (!teachers || teachers == null) {
+                return res.json({
+                    success: false,
+                    data: {},
+                    msg: 'teachers not found!',
+                    status: res.statusCode
                 });
+            };
+            const payload = []
+
+        })
 
 
-            // teacher.searchCoursesByCourseTitle(courseTitle)
-            //     .then(teachers => {
-            //         const cx = teachers[0].courses;
-
-            //         const mapped = teachers.map(t => { return { ...t, courses: t.courses.filter(c => c.courseTitle == courseTitle) } });
-            //         console.log(mapped);
-            //         const ts = mapped.filter(t => t.courses.length > 0);
-            //         console.log(ts);
-            //         res.json({ msg: 'sucessful', ts })
-
-            //     }, (err) => {
-            //         res.json({ msg: 'failed' });
-            //     });
+        return res.json({
+            success: false,
+            data: teachers,
+            msg: 'teachers not found!',
+            status: res.statusCode
+        });
 
 
-        }
+
+        //     Coursedata.searchCourseTitle(courseTitle).then((courses)=>{
+        //          payload.push(courses)
+        //}
+
+        //  }
+
+        //     })
+        // })
+
+
+
+        // return payload
+
+    });
+
+
+    // teacher.searchCoursesByCourseTitle(courseTitle)
+    //     .then(teachers => {
+    //         const cx = teachers[0].courses;
+
+    //         const mapped = teachers.map(t => { return { ...t, courses: t.courses.filter(c => c.courseTitle == courseTitle) } });
+    //         console.log(mapped);
+    //         const ts = mapped.filter(t => t.courses.length > 0);
+    //         console.log(ts);
+    //         res.json({ msg: 'sucessful', ts })
+
+    //     }, (err) => {
+    //         res.json({ msg: 'failed' });
+    //     });
+
+
+}

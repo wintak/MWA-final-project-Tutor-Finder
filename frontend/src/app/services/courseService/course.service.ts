@@ -14,6 +14,9 @@ export class CourseService {
   listCourse() : Observable<Object> {
     return this.http.get(`${API_URL}`);
   }
+  listEnrolled() : Observable<Object> {
+    return this.http.get(`${API_URL}/view`);
+  }
 
   addCourse(course:any) : Observable<Object> {
     return this.http.post(`${API_URL}/addcourse`, course);
