@@ -38,20 +38,16 @@ export class CourseListsComponent implements OnInit {
     const data =this.authService.isLoggedIn();
     const courseId=course._id;
     const userId= (data as any).decodedToken.user._id;
+
+    const firstName= (data as any).decodedToken.user.firstName;
+
     const courseTitle=course.courseTitle
-    console.log(userId,course);
-    this.CourseService.addCourse({userId,course}).subscribe((data)=>{{
-      console.log((data))
+    console.log(userId,firstName);
+    this.CourseService.addCourse({userId,course,firstName}).subscribe((data)=>{{
+   this.router.navigate(['/tutor']) ;
     }})
 
-    if(data == true){
-      return false;
-    }else if(data.isExpired ==false){
-        return true;
-    }else{
-         return false;
-    }
-
   }
+  
 
 }

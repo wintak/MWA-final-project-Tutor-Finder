@@ -46,9 +46,17 @@ export class SigninComponent implements OnInit {
       if ((data as any).success) {
         
         this.load=false;
-                this.authService.storeInSession((data as any).token, (data as any).data)
-        
-        this.router.navigate(['/home'])
+         this.authService.storeInSession((data as any).token, (data as any).data);
+         const user =this.authService.isLoggedIn();
+         const userId= (user as any).decodedToken.user.role;
+        console.log(userId)
+        if(userId=="TEACHER"){
+          this.router.navigate(['tutor'])
+
+        }else if(userId=="STUDENT"){
+          this.router.navigate(['search'])
+       return;
+        }
 
       } else if (!(data as any).success) {
         this.load=false;

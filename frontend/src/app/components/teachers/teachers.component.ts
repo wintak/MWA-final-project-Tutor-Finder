@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { StudentService } from 'src/app/services/student/student.service';
 
@@ -8,20 +8,24 @@ import { StudentService } from 'src/app/services/student/student.service';
   styles: [
   ]
 })
-export class TeachersComponent {
+export class TeachersComponent  {
 
-  @Input('teachers') lists: any = []
+  @Input('teachers') lists: any ;
   
 
   constructor(private studentService: StudentService, private router: Router) { }
 
-  enroll(courseId:any){
-      this.studentService.sendEnrollment(courseId).subscribe(res => {
-        if(res.msg == 'sucessful'){
-          this.router.navigate(['courses'])
-        }
-      })
-  }
+  ngOnChanges(changes: SimpleChanges) {
+   
+    
+    }
+
+    ngOnInit(): void {
+           this.studentService.getEnrollment().subscribe((data)=>{
+             console.log("from enrollment" +data)
+           })
+    }
+  
 
 
 }

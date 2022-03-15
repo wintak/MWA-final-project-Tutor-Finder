@@ -9,8 +9,8 @@
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
-                                <h5 class="card-title">first Name an last name</h5>
-                                <p class="card-text">your email</p>
+                                <h5 class="card-title">{{fname}} {{lname}}</h5>
+                                <p class="card-text">{{email}}</p>
                                 <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                                 <span>         
                                     <button class="courselistbutton " [routerLink]="[ '/courselists']">Add Course</button>
@@ -26,10 +26,17 @@
             </div>
 
         </div>
+        <div class="teacherHeader">
+            <p *ngIf="courses.length">Courses You Teach
+            </p>
+            <p *ngIf="!courses.length" [routerLink]="[ '/courselists']">
+                No course Added Yet
 
-        <div class="card   coursecards" *ngFor="let card of courses  ">
+            </p>
 
-            <div class=" row g ">
+        </div>
+        <div class=" card coursecards " *ngFor="let card of courses ">
+            <div class=" row g " *ngIf="courses.length">
                 <div class="col-md-4 ">
                     <img src="../../../../assets//course.jpg " class="img-fluid rounded-start " alt="... ">
                 </div>
@@ -56,7 +63,7 @@
                     </div>
                 </div>
                 <div class="col-md-2 mt-3 ">
-                    <button class="courselistbutton " (click)="selectCourse(card)">Delete Course</button>
+                    <button class="courselistbutton " (click)="deleteCourse(card) ">Delete Course</button>
 
 
                 </div>

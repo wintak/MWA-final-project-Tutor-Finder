@@ -30,11 +30,15 @@ export class StudentService {
     return this.http.get(this.API_URL + '/api/teacher/search/' + input);
   }
 
-  sendEnrollment(courseId:any): Observable<any> {
-    const data = this.jwtDataGenerate();
-    const student = data._id;
-    const body = {courseId, student}
-    return this.http.post(this.API_URL + '/students', body)
+  sendEnrollment(studentId:string,userId:string,firstName:string,courseTitle:string): Observable<any> {
+  
+    return this.http.post(this.API_URL + '/api/student/enroll/', {studentId,userId,firstName,courseTitle})
+  }
+  
+  getEnrollment(): Observable<any> {
+  
+    return this.http.get(this.API_URL + '/api/student/checkenroll/');
+
   }
 
   courseList(): Observable<any> {

@@ -12,12 +12,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { SearchComponent } from './components/search/search.component';
 import { TeachersComponent } from './components/teachers/teachers.component';
-import { CoursesComponent } from './components/courses/courses.component';
 
-import { CourseComponent } from './components/courses/course/course.component';
-import { CourseListComponent } from './components/courses/course-list/course-list.component';
-import { CourseAddComponent } from './components/courses/course-add/course-add.component';
-import { CourseEditComponent } from './components/courses/course-edit/course-edit.component';
 
 import { SignupStudentComponent } from './components/auth/signup-student/signup-student.component';
 import { SignupTeacherComponent } from './components/auth/signup-teacher/signup-teacher.component';
@@ -34,15 +29,15 @@ import { EnrolledStudentsComponent } from './components/dashboard/enrolled-stude
 const MyRoutes:Routes =[
   {path:'',redirectTo:'home',pathMatch:'full'},
   {path:'home',component: HomeComponent},
-  {path: 'search', component: SearchComponent},
-  {path:'teacher',component:CourseComponent},
+  {path: 'search', component: SearchComponent,canActivate:[AuthGuard,RoleStudentGuard]},
   {path:'signupStudent',component:SignupStudentComponent},
   {path:'SignupTeacher',component:SignupTeacherComponent},
   // {path:'SignupTeacher',component:SignupTeacherComponent,canActivate:[AuthGuard]},
   {path:'signin',component:SigninComponent},
   {path:'courselists',component:CourseListsComponent},
-  {path:'tutor',component:TeacherComponent},
+  {path:'tutor',component:TeacherComponent,canActivate:[AuthGuard,RoleTeacherGuard]},
   {path:"enrolledStudents",component:EnrolledStudentsComponent},
+  {path:'enrollment',component:TeachersComponent},
   {path:'**',component:HomeComponent}
  
 
@@ -55,11 +50,6 @@ const MyRoutes:Routes =[
     HomeComponent,
     SearchComponent,
     TeachersComponent,
-    CoursesComponent,
-    CourseComponent,
-    CourseListComponent,
-    CourseAddComponent,
-    CourseEditComponent,
     SignupStudentComponent,
     SignupTeacherComponent,
     SigninComponent,

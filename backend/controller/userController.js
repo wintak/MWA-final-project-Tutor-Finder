@@ -61,7 +61,16 @@ module.exports.signin = async(req, res, next) => {
                 email: user.email,
                 role: user.role
             }
-            if (err) throw err;
+            if (err) {
+                return res.json({
+                    success: true,
+                    token: {},
+                    data: {},
+                    msg: "Password MisMatch",
+                    status: res.statusCode
+
+                });
+            }
 
 
             if (isMatch) {
@@ -83,7 +92,7 @@ module.exports.signin = async(req, res, next) => {
                     data: payload,
                     msg: "Wrong password",
                     status: res.statusCode
-                    
+
                 });
             }
 

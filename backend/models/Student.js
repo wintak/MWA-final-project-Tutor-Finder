@@ -2,16 +2,17 @@ const mongoose = require('mongoose');
 
 const StudentSchema = new mongoose.Schema({
 
-    studentId: String,
-    enrolledCourses: [{
-        courseTitile: String,
-        teacherName: String,
-        courseId: String,
-        courseDescription: String
-    }]
+
+    enrolled: [{
+        userId: String,
+        courseTitle: String,
+        firstName: String,
+        studentId: String,
+    }],
+
+
+
 })
 
 
 const Student = module.exports = mongoose.model('Student', StudentSchema);
-
-

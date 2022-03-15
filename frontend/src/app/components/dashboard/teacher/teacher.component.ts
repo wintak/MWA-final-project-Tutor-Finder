@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/authServices/auth.service';
-import { CoursesListService } from 'src/app/services/coursedashboard/courses.service';
+import { CourseService } from 'src/app/services/courseService/course.service';
 import  {store} from '../../../reducers/store';
 @Component({
   selector: 'app-teacher',
@@ -13,20 +13,28 @@ export class TeacherComponent implements OnInit {
   courses:any;
   show:boolean=false;
   searchText:any;
+  fname:string='';
+  lname:string='';
+  email:string=''
+  flag:boolean=true
+
+
    
 
-  constructor(private CoursesService:CoursesListService,private router:Router,private authService:AuthService) { }
+  constructor(private CourseService:CourseService,private router:Router,private authService:AuthService) { }
 
   ngOnInit(): void {
     const data =this.authService.isLoggedIn();
     const userId= (data as any).decodedToken.user._id;
-    const name= (data as any).decodedToken.user.firstName;
+    this. fname= (data as any).decodedToken.user.firstName;
+    this. lname= (data as any).decodedToken.user.lastName;
 
-    const email= (data as any).decodedToken.user.email;
+    this. email= (data as any).decodedToken.user.email;
 
-
-    this.CoursesService.getCourses().subscribe((data)=>{
-      this.courses=(data as any).data
+    this.CourseService.getSelectedCourse(userId).subscribe((data)=>{
+      console.log((data as any))
+      this.courses=(data as any).data.courses
+      this.flag=false;
     });
   }
 
@@ -36,7 +44,7 @@ export class TeacherComponent implements OnInit {
   setSearch(name:String){
     this.searchText=name
   };
-  selectCourse(course:any){
+  deleteCourse(course:any){
     console.log(course);
     console.log(store.getState());
     const data =this.authService.isLoggedIn();
@@ -44,13 +52,16 @@ export class TeacherComponent implements OnInit {
     const userId= (data as any).decodedToken.user._id;
     const courseTitle=course.courseTitle
     console.log(courseId,courseTitle,userId);;
-    if(data == true){
-      return false;
-    }else if(data.isExpired ==false){
-        return true;
-    }else{
-         return false;
-    }
+    this.CourseService.deleteCourse(userId,courseId).subscribe((data)=>{
+      console.log((data as any))
+      // this.courses=(data as any).data.courses
+      this.CourseService.getSelectedCourse(userId).subscribe((data)=>{
+        console.log((data as any))
+        this.courses=(data as any).data.courses
+      });   
+    
+    });
+
 
   }
 

@@ -41,3 +41,10 @@
     height: 300px;
     width: 300px;
 }
+
+.teacherHeader {
+    align-items: center;
+    margin-left: 38rem;
+    font-size: 1.25rem;
+    color: #e99542;
+}

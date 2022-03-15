@@ -21,12 +21,14 @@ export class CourseService {
   addCourse(course:any) : Observable<Object> {
     return this.http.post(`${API_URL}/addcourse`, course);
   }
- 
+  getSelectedCourse(userId:any): Observable<Object> {
+    return this.http.get(`${API_URL}/teacherCourses/`+userId);
+  }
   editCourse(course_id: string, { }) : Observable<Object> {
     return this.http.patch(`${API_URL}/edit`, { });
   }
-  deleteCourse(course_id: string, { }) : Observable<Object> {
-    return this.http.delete(`${API_URL}/delete`, { });
+  deleteCourse(courseId: string, userId:string) : Observable<Object> {
+    return this.http.put(`${API_URL}/updatecourse`,{courseId, userId});
   }
 
 

@@ -1,15 +1,57 @@
+<div class="coursebody">
+    <div class="container shadow min-vh-100 py-4">
+        <p class="courseListheaer ">Select Courses</p>
 
-<form [formGroup]="searchInput"  (ngSubmit)="search()">
-    <div>
-        <input id="search" value="search" formControlName = "search">
-    </div>
-    <div>
-        <button [disabled]="!searchInput.valid">Search</button>
-    </div>
-    <div>
-        <button id="mylist">My List</button>
-    </div>
-    
-</form>
+        <div class="row">
+            <p class="errormessage ">{{msg}}</p>
 
-<app-teachers *ngIf="listOfTeachers" [teachers] = "listOfTeachers"></app-teachers>
+            <div class="col-md-5 mx-auto ">
+                <div class="small fw-light "></div>
+                <form [formGroup]="searchInput" (ngSubmit)="search()">
+                    <div class="input-group ">
+                        <input value="search" formControlName="search" class="form-control border-end-0 border rounded-pill " type="search " v id="example-search-input " placeholder=" Enter CourseTitle ">
+                        <span class="input-group-append ">
+                    <button [disabled]="!searchInput.valid" class="btn btn-outline-secondary bg-white border-bottom-0 border rounded-pill ms-n5 " type="button ">
+                        <i class="fa fa-search searchbutton"></i>
+                    </button>
+                </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="card coursecards " *ngFor="let teacher of names ">
+            <div class=" row g ">
+                <div class="col-md-4 ">
+                    <img src="../../../../assets//course.jpg " class="img-fluid rounded-start " alt="... ">
+                </div>
+
+                <div class="col-md-6 ">
+                    <div class="card-body ">
+                        <h5 class="card-title ">Course By {{teacher.firstName}}</h5>
+                        <p class="card-text catagory m-0 ">
+                            catagory:
+                            <small class="text-muted " style="color: #e99542; ">{{courseTitle}}
+                            </small></p>
+
+                        <p class="card-text " *ngIf="!show ">{{courseDescription.substring(0,100)}}...</p>
+                        <p class="card-text " *ngIf="show ">{{courseDescription}}.</p>
+
+                        <button class="courselistbutton " *ngIf="!show " (click)="showdesc() ">show more</button>
+                        <button class="courselistbutton " *ngIf="show " (click)="showdesc() ">show less</button>
+
+                        <p class="card-text "><small class="text-muted ">
+                            <i class="fa fa-star-o " aria-hidden="true " style="color:#e99542; "></i>
+
+                        
+</small></p>
+                    </div>
+                </div>
+                <div class="col-md-2 mt-3 ">
+                    <button class="courselistbutton" (click)="enroll(teacher)">Enroll</button>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

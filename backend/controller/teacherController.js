@@ -16,138 +16,185 @@ module.exports.fetch = async(req, res) => {
 }
 
 module.exports.remove = async(req, res) => {
-    console.log(req.params);
-    await teacher.deleteOne({ tokengen }, { $pull: { course: { courseId: req.params.id } } });
-    res.json({ success: 1, data: `removed course with id ${req.params.id}` })
+    const { userId, courseId } = req.body
+    console.log(courseId + '...' +
+        userId)
+    const r = await teacher.updateOne({ userId: courseId }, {
+        $pull: {
+            courses: { _id: userId }
+
+        }
+
+    })
+    console.log(r)
+
+    if (r) {
+        res.json({ success: true, data: {}, msg: '  course deleted !', status: res.statusCode })
+
+    } else {
+        res.json({
+            success: false,
+            data: {},
+            msg: 'Failed to delete course',
+            status: res.statusCode
+        })
+
+    }
 }
 
 
 module.exports.addcourse = async(req, res) => {
-    const { userId, course } = req.body
-    console.log(userId, course);
+    const { userId, course, firstName } = req.body
+    console.log("coursename" + firstName)
     const teachers = await teacher.findOne({
-        userId
+        userId: userId
+    }).exec();
+
+    if (teachers) {
+
+        teachers.courses.push({ userId, courses: course })
+        const r = await teacher.updateOne({ userId }, {
+            $addToSet: {
+
+                courses: course
+            }
+
+        })
+        if (r) {
+            res.json({ success: true, data: {}, msg: 'new  course added !', status: res.statusCode })
+
+        } else {
+            res.json({
+                success: false,
+                data: {},
+                msg: 'Failed to add course',
+                status: res.statusCode
+            })
+
+        }
+    } else {
+        const result = new teacher({ userId, courses: [course], firstName }).save();
+
+        if (result) {
+            res.json({ success: true, data: {}, msg: 'new  course selected !', status: res.statusCode })
+
+        } else {
+            res.json({
+                success: false,
+                data: {},
+                msg: 'Failed to add course',
+                status: res.statusCode
+            })
+
+        }
+
+
+    }
+}
+module.exports.getcourseByuserId = async(req, res) => {
+    const { userId } = req.params;
+    const teachers = await teacher.findOne({
+        userId: userId
     }).exec();
     console.log(teachers)
-    if (teachers) {
-        teacher.updateOne({ userId }, { $addToSet: { course: req.body } });
+    return res.json({
+        success: false,
+        data: teachers,
+        msg: 'Failed to add course',
+        status: res.statusCode
+    })
 
-    } else {
-        const result = User.adduser(
-            new User({
-                firstName: firstName,
-                lastName: lastName,
-                phoneNumber: phoneNumber,
-                email: email,
-                passWord: passWord,
-                role: role
-            }));
-    }
+}
 
+module.exports.add = async(req, res) => {
+    console.log("teacher" + req.body);
 
-    module.exports.add = async(req, res) => {
-        console.log("teacher" + req.body);
+    const data = new teacher(req.body)
+    await data.save()
+    const result = teacher.addteacher(
+        new teacher(req.body));
+    console.log(result);
 
-        const data = new teacher(req.body)
-        await data.save()
-        const result = teacher.addteacher(
-            new teacher(req.body));
-        console.log(result);
+    // await teacher.updateOne({tokengen},{$push:{course:req.body}});
 
-        // await teacher.updateOne({tokengen},{$push:{course:req.body}});
-
-        res.send({ success: 1, data: teacher });
+    res.send({ success: 1, data: teacher });
 
 
 
-    }
+}
 
-    module.exports.edit = async(req, res) => {
-        console.log(req.body);
-
-
-    }
-
-    module.exports.edit = async(req, res) => {
-        console.log(req.body);
+module.exports.edit = async(req, res) => {
+    console.log(req.body);
 
 
-        await teacher.updateOne({ tokengen }, { $set: { "course.$[obj]": req.body } }, { arrayFilters: { "obj.courseId": req.params.id } })
-        res.send({ success: 1, data: teacher });
+}
 
-    }
+module.exports.edit = async(req, res) => {
+    console.log(req.body);
+
+
     await teacher.updateOne({ tokengen }, { $set: { "course.$[obj]": req.body } }, { arrayFilters: { "obj.courseId": req.params.id } })
     res.send({ success: 1, data: teacher });
 
 }
 
+
+
+
 module.exports.searchCourse = async(req, res) => {
 
-    const { courseTitle } = req.params;
+    let { courseTitle } = req.params;
+    courseTitle
+    const result = await teacher.find({
+            "courses.courseTitle": courseTitle,
+        }
 
-
-    console.log("we ARE HWEW ROUER" + courseTitle)
-
-    //  const titledata=  teacher.searchCoursesByCourseTitle(courseTitle)
-    //  console.log(titledata);
-    //  titledata.then((datae)=>{
-    //      console.log(datae)
-    //  });
-    const teachersList = teacher.searchCoursesByCourseTitle(courseTitle).then((teachers) => {
-
-        teacher.searchCoursesByCourseTitle(courseTitle).then((teachers) => {
-            console.log(teachers)
-            if (!teachers || teachers == null) {
-                return res.json({
-                    success: false,
-                    data: {},
-                    msg: 'teachers not found!',
-                    status: res.statusCode
-                });
-            };
-            const payload = []
-
+    ).exec()
+    if (result.length == 0) {
+        return res.json({
+            success: false,
+            data: {},
+            msg: 'No courses Available Now ',
+            status: res.statusCode
+        })
+    }
+    let userId;
+    let ca = []
+    let user = [];
+    let names = []
+    result.map((c) => {
+        user.push({
+            userId: c.userId,
+            firstName: c.firstName
         })
 
 
-        return res.json({
-            success: false,
-            data: teachers,
-            msg: 'teachers not found!',
-            status: res.statusCode
-        });
+
+    })
+    console.log(user)
+    r = result[0].courses.map((c) => {
+        if (c.courseTitle == courseTitle) {
+            ca.push(c)
+
+        }
+
+        return c.courseTitle = courseTitle
+
+    })
+    console.log(ca)
+
+    return res.json({
+        success: false,
+        data: ca,
+        teachers: result,
+        user: user,
+
+        msg: 'Failed to add course',
+        status: res.statusCode
+    })
 
 
 
-        //     Coursedata.searchCourseTitle(courseTitle).then((courses)=>{
-        //          payload.push(courses)
-        //}
-
-        //  }
-
-        //     })
-        // })
-
-
-
-        // return payload
-
-    });
-
-
-    // teacher.searchCoursesByCourseTitle(courseTitle)
-    //     .then(teachers => {
-    //         const cx = teachers[0].courses;
-
-    //         const mapped = teachers.map(t => { return { ...t, courses: t.courses.filter(c => c.courseTitle == courseTitle) } });
-    //         console.log(mapped);
-    //         const ts = mapped.filter(t => t.courses.length > 0);
-    //         console.log(ts);
-    //         res.json({ msg: 'sucessful', ts })
-
-    //     }, (err) => {
-    //         res.json({ msg: 'failed' });
-    //     });
 
 
 }

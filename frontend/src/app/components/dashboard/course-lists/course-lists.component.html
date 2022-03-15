@@ -1,19 +1,24 @@
 <div class="coursebody">
     <div class="container shadow min-vh-100 py-4">
+        <p class="courseListheaer ">Select Course to Teach</p>
         <div class="row">
-            <div class="col-md-5 mx-auto">
-                <div class="small fw-light"></div>
-                <div class="input-group">
-                    <input class="form-control border-end-0 border rounded-pill" type="search" #formvalue (keyup)="setSearch(formvalue.value)" v id="example-search-input" placeholder="Search and Add Courses to your Lists">
-                    <span class="input-group-append">
-                    <button class="btn btn-outline-secondary bg-white border-bottom-0 border rounded-pill ms-n5" type="button">
-                        <i class="fa fa-search"></i>
+            <div class="col-md-2 mx-auto">
+                <button class=" courselistbutton " [routerLink]="[ '/tutor'] ">Back</button>
+            </div>
+
+            <div class="col-md-5 mx-auto ">
+                <div class="small fw-light "></div>
+                <div class="input-group ">
+                    <input class="form-control border-end-0 border rounded-pill " type="search " #formvalue (keyup)="setSearch(formvalue.value) " v id="example-search-input " placeholder="Search and Add Courses to your Lists ">
+                    <span class="input-group-append ">
+                    <button class="btn btn-outline-secondary bg-white border-bottom-0 border rounded-pill ms-n5 " type="button ">
+                        <i class="fa fa-search "></i>
                     </button>
                 </span>
                 </div>
             </div>
         </div>
-        <div class="card   coursecards" *ngFor="let card of courses  ">
+        <div class="card coursecards " *ngFor="let card of courses ">
             <div class=" row g ">
                 <div class="col-md-4 ">
                     <img src="../../../../assets//course.jpg " class="img-fluid rounded-start " alt="... ">
@@ -41,8 +46,7 @@
                     </div>
                 </div>
                 <div class="col-md-2 mt-3 ">
-                    <button class="courselistbutton " (click)="selectCourse(card)">Select Your Course</button>
-
+                    <button class="courselistbutton " (click)="selectCourse(card) ">Select Your Course</button>
 
                 </div>
             </div>

@@ -49,7 +49,6 @@ export class SignupTeacherComponent implements OnInit {
       phoneNumber:phoneNumber,
       role:"TEACHER"
     }).subscribe((data)=>{
-      console.log((data as any)[0].msg);
 
       if( (data as any)[0] ){
         this.msg=(data as any)[0].msg
@@ -62,7 +61,7 @@ export class SignupTeacherComponent implements OnInit {
       store.dispatch(this.authActions.loadedUsers((data as any ).data))
       this.load=false;
      
-           this.router.navigate(['/'])
+           this.router.navigate(['tutor'])
 
     }else{
       this.load=false;
