@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/authServices/auth.service';
-import { CoursesService } from 'src/app/services/coursedashboard/courses.service';
+import { CourseService } from 'src/app/services/courseService/course.service';
+import {CoursesListService} from '../../../services/coursedashboard/CoursesListService.service'
 import  {store} from '../../../reducers/store';
 
 @Component({
@@ -16,11 +17,11 @@ export class CourseListsComponent implements OnInit {
   searchText:any;
    
 
-  constructor(private CoursesService:CoursesService,private router:Router,private authService:AuthService) { }
+  constructor(private CoursesListService:CoursesListService,private CourseService:CourseService,private router:Router,private authService:AuthService) { }
 
   ngOnInit(): void {
 
-    this.CoursesService.getCourses().subscribe((data)=>{
+    this.CoursesListService.getCourses().subscribe((data)=>{
       this.courses=(data as any).data
     })
   }
@@ -38,7 +39,11 @@ export class CourseListsComponent implements OnInit {
     const courseId=course._id;
     const userId= (data as any).decodedToken.user._id;
     const courseTitle=course.courseTitle
-    console.log(courseId,courseTitle,userId);;
+    console.log(userId,course);
+    this.CourseService.addCourse({userId,course}).subscribe((data)=>{{
+      console.log((data))
+    }})
+
     if(data == true){
       return false;
     }else if(data.isExpired ==false){

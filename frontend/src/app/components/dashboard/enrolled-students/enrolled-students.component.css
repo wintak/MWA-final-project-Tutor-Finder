@@ -1,0 +1,31 @@
+.coursecards {
+    display: flex;
+    max-width: 90%;
+    justify-content: center;
+    margin: auto;
+    margin-top: 4rem;
+}
+
+.ms-n5 {
+    margin-left: -40px;
+}
+
+.coursebody {}
+
+.courselistbutton {
+    background-color: #e99542 !important;
+    border-radius: 0.375rem;
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    border-color: #fff;
+    color: #fff;
+}
+
+.catagory {
+    color: #e99542
+}
+
+.EnrolledHeader {
+    font-size: 1.25rem;
+}

@@ -24,6 +24,8 @@ import {RoleStudentGuard} from './services/authServices/roleStudent.guard'
 import { AuthInterceptor } from './services/authServices/AuthInterceptor';
 import { CourseListsComponent } from './components/dashboard/course-lists/course-lists.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { TeacherComponent } from './components/dashboard/teacher/teacher.component';
+import { EnrolledStudentsComponent } from './components/dashboard/enrolled-students/enrolled-students.component';
 //  paths
 const MyRoutes:Routes =[
   {path:'',redirectTo:'home',pathMatch:'full'},
@@ -34,8 +36,10 @@ const MyRoutes:Routes =[
   // {path:'SignupTeacher',component:SignupTeacherComponent,canActivate:[AuthGuard]},
   {path:'signin',component:SigninComponent},
   {path:'courselists',component:CourseListsComponent},
+  {path:'tutor',component:TeacherComponent},
+  {path:"enrolledStudents",component:EnrolledStudentsComponent},
   {path:'**',component:HomeComponent}
-
+ 
 
 
 ]
@@ -52,7 +56,9 @@ const MyRoutes:Routes =[
     SignupTeacherComponent,
     SigninComponent,
     CourseListsComponent,
-    FooterComponent
+    FooterComponent,
+    TeacherComponent,
+    EnrolledStudentsComponent
   ],
   imports: [
     BrowserModule,

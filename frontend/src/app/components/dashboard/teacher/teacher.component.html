@@ -1,0 +1,67 @@
+<div class="coursebody">
+    <div class="container shadow min-vh-100 py-4">
+        <div class="row   teacherstatus">
+            <div class="col-m-12">
+                <div class="card teacherbiocard">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="../../../../assets/profile.jpg" class="img-fluid  profilesize" alt="Profile">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">first Name an last name</h5>
+                                <p class="card-text">your email</p>
+                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                <span>         
+                                    <button class="courselistbutton " [routerLink]="[ '/courselists']">Add Course</button>
+                                </span>
+                                <button class="courselistbutton">Enrolled Students</button>
+
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="card   coursecards" *ngFor="let card of courses  ">
+
+            <div class=" row g ">
+                <div class="col-md-4 ">
+                    <img src="../../../../assets//course.jpg " class="img-fluid rounded-start " alt="... ">
+                </div>
+
+                <div class="col-md-6 ">
+                    <div class="card-body ">
+                        <h5 class="card-title ">{{card.courseTitle}}</h5>
+                        <p class="card-text catagory m-0 ">
+                            catagory:
+                            <small class="text-muted " style="color: #e99542; ">{{card.catagory}}
+                            </small></p>
+
+                        <p class="card-text " *ngIf="!show ">{{card.courseDescription.substring(0,100)}}...</p>
+                        <p class="card-text " *ngIf="show ">{{card.courseDescription}}.</p>
+
+                        <button class="courselistbutton " *ngIf="!show " (click)="showdesc() ">show more</button>
+                        <button class="courselistbutton " *ngIf="show " (click)="showdesc() ">show less</button>
+
+                        <p class="card-text "><small class="text-muted ">
+                            <i class="fa fa-star-o " aria-hidden="true " style="color:#e99542; "></i>
+
+                          {{card.rating}}
+</small></p>
+                    </div>
+                </div>
+                <div class="col-md-2 mt-3 ">
+                    <button class="courselistbutton " (click)="selectCourse(card)">Delete Course</button>
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -61,7 +61,7 @@ export class SignupTeacherComponent implements OnInit {
      if((data as any).success){
       store.dispatch(this.authActions.loadedUsers((data as any ).data))
       this.load=false;
-
+     
            this.router.navigate(['/'])
 
     }else{
