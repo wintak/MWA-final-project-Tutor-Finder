@@ -5,16 +5,11 @@ POST http://localhost:3000/api/teacher/add HTTP/1.1
 content-type: application/json
 
 { 
-    "userId":1,
-    "courses":[ { "courseId":"1"} ,
-               {"titel":"angular"},
-           {"description":"good"}
-   ],
 
-   "userId":2,
-    "courses":[ { "courseId":"1"} ,
-               {"titel":"angular"},
-           {"description":"good"}
+    "userId":8,
+    "courses":
+    [ 
+      {"_id":"622f5e3aa1c553e3a9439455","courseTitle":"Acrylic Painting","courseDescription":"Acrylic Painting From Beginner to Master is designed to teach anyone, from beginner to moderate skill levels, all of the fundamentals of acrylics you’ll ever need to create colorful, photo realistic paintings.","courseName":" Microsoft Data Base","catagory":"Art","rating":{"$numberInt":"1"}}
    ]
 
 

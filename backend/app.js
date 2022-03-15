@@ -7,6 +7,7 @@ const cors = require('cors');
 //routes
 
 const userRoute = require('./routes/userRoutes');
+const studentRoute = require('./routes/studentRouter')
 const teacherRoute = require('./routes/teacherRoutes');
 
 //database config
@@ -30,6 +31,8 @@ app.use(express.json());
 app.use('/api/users/', userRoute);
 app.use('/api/teacher/', teacherRoute)
 app.use('/api/courses/', courseRoute);
+app.use('/api/student/', studentRoute);
+
 
 
 
