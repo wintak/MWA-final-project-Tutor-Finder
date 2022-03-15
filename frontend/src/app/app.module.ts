@@ -10,6 +10,10 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
+import { SearchComponent } from './components/search/search.component';
+import { TeachersComponent } from './components/teachers/teachers.component';
+import { CoursesComponent } from './components/courses/courses.component';
+
 import { CourseComponent } from './components/courses/course/course.component';
 import { CourseListComponent } from './components/courses/course-list/course-list.component';
 import { CourseAddComponent } from './components/courses/course-add/course-add.component';
@@ -29,7 +33,8 @@ import { EnrolledStudentsComponent } from './components/dashboard/enrolled-stude
 //  paths
 const MyRoutes:Routes =[
   {path:'',redirectTo:'home',pathMatch:'full'},
-  {path:'home',component:HomeComponent},
+  {path:'home',component: HomeComponent},
+  {path: 'search', component: SearchComponent},
   {path:'teacher',component:CourseComponent},
   {path:'signupStudent',component:SignupStudentComponent},
   {path:'SignupTeacher',component:SignupTeacherComponent},
@@ -48,6 +53,9 @@ const MyRoutes:Routes =[
     AppComponent,
     NavbarComponent,
     HomeComponent,
+    SearchComponent,
+    TeachersComponent,
+    CoursesComponent,
     CourseComponent,
     CourseListComponent,
     CourseAddComponent,
@@ -64,7 +72,8 @@ const MyRoutes:Routes =[
     BrowserModule,
     RouterModule.forRoot(MyRoutes),
     HttpClientModule,
-    ReactiveFormsModule  ] ,
+    ReactiveFormsModule    
+  ],
    providers: [  { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }  ],
     
   bootstrap: [AppComponent]

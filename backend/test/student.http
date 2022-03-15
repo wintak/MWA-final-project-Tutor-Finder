@@ -1,0 +1,11 @@
+POST http://localhost:3000/api/students HTTP/1.1
+content-type: application/json
+
+[{"studentId" : "1", "enrolledCourses": [{"courseName": "a", "courseId": "aa"}]},
+ {"studentId" : "2", "enrolledCourses": [{"courseName": "b", "courseId": "bb"}]},
+ {"studentId" : "3", "enrolledCourses": [{"courseName": "c", "courseId": "cc"}]}
+]
+
+###
+GET http://localhost:3000/api/students/1
+Content-Type: "application/json"

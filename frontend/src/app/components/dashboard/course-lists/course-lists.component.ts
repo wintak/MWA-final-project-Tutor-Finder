@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/authServices/auth.service';
 import { CourseService } from 'src/app/services/courseService/course.service';
-import {CoursesListService} from '../../../services/coursedashboard/CoursesListService.service'
+import {CoursesListService} from '../../../services/coursedashboard/courses.service'
 import  {store} from '../../../reducers/store';
 
 @Component({

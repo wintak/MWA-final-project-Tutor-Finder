@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/authServices/auth.service';
-import { CoursesListService } from 'src/app/services/coursedashboard/CoursesListService.service';
+import { CoursesListService } from 'src/app/services/coursedashboard/courses.service';
 import  {store} from '../../../reducers/store';
 @Component({
   selector: 'app-teacher',
