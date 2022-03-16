@@ -1,10 +1,30 @@
-<div *ngFor="let list of lists">
-    <p> {{list.userId}} </p>
-    <p >{{list.courses.courseTitle}}</p>
-    <p >{{list.courses.courseDescription}}</p>
-    <p >{{list.courses.rating}}</p>
-    <div>
-        <button id="enroll" (click) = "enroll(list.courses._id)">Enroll</button>
+<div class="container" *ngFor="let list of lists">
+
+    <div class="card border-secondary m-4" style="max-width: 60vw;" *ngFor="let courseItem of list.courses">
+        <div class=" card-body text-secondary" >
+            
+            <div class=" d-flex justify-content-between ">
+                <div class="p-4">
+                    <h5 class="card-title text-dark"> <b>CourseTitle: </b> {{courseItem.courseTitle}}</h5>
+                    <p class="card-text"> <b>Description: </b> {{courseItem.courseDescription}}</p>
+                    <span><b>Rating: </b>{{courseItem.rating}}</span>
+                </div>
+                <button class="btn btn-warning align-self-center p- 2 h-auto" id="enroll" (click)="enroll(courseItem._id)">Enroll</button>
+            </div>
+        </div>
     </div>
-    
 </div>
+
+<!-- 
+<div class="m-2 bg-danger " *ngFor="let list of lists">
+    <p> {{list.userId}} </p>
+    <div class="m-2 bg-info" *ngFor="let courseItem of list.courses">
+        <p class="" >{{courseItem.courseTitle}}</p>
+        <p>{{courseItem.courseDescription}}</p>
+        <p>{{courseItem.rating}}</p>
+        <div>
+            <button class="btn btn-warning"  id="enroll" (click)="enroll(list.courses._id)">Enroll</button>
+        </div>
+    </div> 
+
+</div> -->

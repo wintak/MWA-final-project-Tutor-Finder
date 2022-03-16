@@ -57,6 +57,8 @@ module.exports.getEnrolled= async(req,res)=>{
   return res.json({success:1, data:students, msg:`student found`}) 
  }else{
     return    res.json({ success: 1, data: {},msg:`student not found`})
+ }
+}
 
 module.exports.searchCourse = async (req, res) => {
 
@@ -66,7 +68,7 @@ module.exports.searchCourse = async (req, res) => {
 
 
      const teachersList = teacher.searchCoursesByCourseTitle(courseTitle).then((teachers) => {
-         console.log(teachers)
+        console.log(teachers)
         if (!teachers || teachers == null) {
             return res.json({
                 success: false,
@@ -75,6 +77,7 @@ module.exports.searchCourse = async (req, res) => {
                 status: res.statusCode
             });
         };
+        console.log(teacher)
         const payload=[]
         return res.json({
             success: false,
@@ -82,6 +85,8 @@ module.exports.searchCourse = async (req, res) => {
             msg: 'teachers not found!',
             status: res.statusCode
         });
+     });
+      
 
         // teachers.map((t)=>{
         //     const userId=t.userId

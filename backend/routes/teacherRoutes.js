@@ -3,11 +3,7 @@ const router = express.Router();
 const teacherController = require('../controller/teacherController');
 
 
-<<<<<<< HEAD
-const { fetch, remove, add ,edit,getEnrolled } = teacherController;
-=======
-const { fetch, remove, add ,edit, searchCourse} = teacherController;
->>>>>>> cf56396eeb606853fed43cf8c94aaa6b3ecd0b65
+const { fetch, remove, add ,edit,getEnrolled, searchCourse } = teacherController;
 
 router.post('/add', add);
 
